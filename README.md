@@ -122,6 +122,31 @@ var { instance: document, constructor: HTMLDocument } = xbs.createObject({
 })
 ```
 
+### 6. 创建访问器(getter/setter)
+```javascript
+var a = {};
+Object.defineProperty(a, "abc", {
+    get: xbs.createGetter("abc", function () {
+        // ...
+    }),
+    set: xbs.createSetter("abc", function (value) {
+        // ...
+    })
+})
+```
+
+### 7. 创建私有属性
+通过xbs对象设置的私有属性，在js层是无法遍历到的
+```javascript
+var a = {};
+// 设置私有属性
+xbs.setPrivate(a, "a", 123);
+// 获取私有属性
+console.log(xbs.getPrivate(a, "a"));
+// 删除私有属性
+xbs.deletePrivate(a, "a");
+```
+
 ### 说明
 1. 已补齐全局对象整个原型链
 2. 补齐node内置对象的toString保护
@@ -140,6 +165,8 @@ var { instance: document, constructor: HTMLDocument } = xbs.createObject({
     - [3. 创建不可检测对象](#3-创建不可检测对象)
     - [4. 创建本地构造函数或普通函数](#4-创建本地构造函数或普通函数)
     - [5. 创建本地对象](#5-创建本地对象)
+    - [6. 创建访问器(getter/setter)](#6-创建访问器gettersetter)
+    - [7. 创建私有属性](#7-创建私有属性)
     - [说明](#说明)
   - [表格内容](#表格内容)
   
